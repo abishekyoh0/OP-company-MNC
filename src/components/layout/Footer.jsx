@@ -59,7 +59,7 @@ const Footer = () => {
     <footer className="relative bg-bg-surface border-t border-border-main/50 pt-20 pb-10 overflow-hidden">
       {/* Background ambient glow */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-premium opacity-[0.03] blur-3xl -z-10 rounded-full" />
-      
+
       <div className=" mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
         {/* Brand Information & Newsletter Column */}
         <div className="col-span-1 lg:col-span-4 flex flex-col gap-6">
@@ -75,6 +75,36 @@ const Footer = () => {
             Deploying cloud orchestration, secure network nodes, and real-time telemetry systems for leading multinational companies worldwide.
           </p>
 
+          <div className="flex items-center gap-4">
+            <a
+              href="#"
+              className="p-2 border border-border-main/50 rounded-full text-text-muted hover:text-secondary hover:bg-bg-surface-hover hover:-translate-y-0.5 transition-all duration-300"
+              aria-label="GitHub"
+            >
+              <FiGithub className="w-4.5 h-4.5" />
+            </a>
+            <a
+              href="#"
+              className="p-2 border border-border-main/50 rounded-full text-text-muted hover:text-secondary hover:bg-bg-surface-hover hover:-translate-y-0.5 transition-all duration-300"
+              aria-label="Twitter"
+            >
+              <FiTwitter className="w-4.5 h-4.5" />
+            </a>
+            <a
+              href="#"
+              className="p-2 border border-border-main/50 rounded-full text-text-muted hover:text-secondary hover:bg-bg-surface-hover hover:-translate-y-0.5 transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              <FiLinkedin className="w-4.5 h-4.5" />
+            </a>
+            <a
+              href="#"
+              className="p-2 border border-border-main/50 rounded-full text-text-muted hover:text-secondary hover:bg-bg-surface-hover hover:-translate-y-0.5 transition-all duration-300"
+              aria-label="Discord"
+            >
+              <FiDisc className="w-4.5 h-4.5" />
+            </a>
+          </div>
           <form id="newsletter" onSubmit={handleSubscribe} className="flex flex-col gap-2 max-w-sm mt-2">
             <span className="text-xs font-semibold font-heading text-text-main/80 uppercase tracking-widest">
               Subscribe to System Logs

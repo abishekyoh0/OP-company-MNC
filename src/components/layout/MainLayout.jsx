@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import Loader from '../ui/Loader';
 import ScrollToTop from '../ui/ScrollToTop';
+import ChatBot from '../ui/ChatBot';
 
 const MainLayout = ({ children }) => {
   return (
@@ -23,6 +24,9 @@ const MainLayout = ({ children }) => {
 
       {/* Floating scroll tracker */}
       <ScrollToTop />
+
+      {/* Floating interactive assistant */}
+      <ChatBot />
     </div>
   );
 };

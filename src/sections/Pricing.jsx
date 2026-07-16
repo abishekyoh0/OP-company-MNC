@@ -69,9 +69,8 @@ const Pricing = () => {
           <Card
             key={index}
             gradientBorder={tier.popular}
-            className={`pricing-card-item flex flex-col justify-between h-full min-h-[480px] relative ${
-              tier.popular ? 'shadow-2xl shadow-glow/10 border-secondary/40' : 'border-border-main/50'
-            }`}
+            className={`pricing-card-item flex flex-col justify-between h-full min-h-[480px] relative ${tier.popular ? 'shadow-2xl shadow-glow/10 border-secondary/40' : 'border-border-main/50'
+              }`}
           >
             {/* Top Info Area */}
             <div className="flex flex-col text-left gap-5">
@@ -125,7 +124,7 @@ const Pricing = () => {
             {/* Bottom Actions CTA Button */}
             <div className="mt-8">
               <Button
-                variant={tier.popular ? 'gradient' : 'outline'}
+                variant={'gradient'}
                 size="md"
                 className="w-full"
                 onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}
