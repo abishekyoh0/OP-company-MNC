@@ -169,15 +169,10 @@ const Hero = () => {
       <div 
         className={`absolute inset-0 -z-30 pointer-events-none transition-opacity duration-700 ${isHovered ? 'opacity-100' : isDark ? 'opacity-45' : 'opacity-60'}`}
         style={{
-          backgroundImage: isDark
-            ? `
-              linear-gradient(to right, rgba(45, 212, 191, 0.28) 1.5px, transparent 1.5px),
-              linear-gradient(to bottom, rgba(45, 212, 191, 0.28) 1.5px, transparent 1.5px)
-            `
-            : `
-              linear-gradient(to right, rgba(13, 148, 136, 0.35) 1.5px, transparent 1.5px),
-              linear-gradient(to bottom, rgba(13, 148, 136, 0.35) 1.5px, transparent 1.5px)
-            `,
+          backgroundImage: `
+            linear-gradient(to right, rgba(20, 184, 166, 0.3) 1.5px, transparent 1.5px),
+            linear-gradient(to bottom, rgba(20, 184, 166, 0.3) 1.5px, transparent 1.5px)
+          `,
           backgroundSize: '3.5rem 3.5rem',
           backgroundPosition: 'center',
           maskImage: `radial-gradient(220px circle at ${mousePos.x}px ${mousePos.y}px, black 30%, transparent 100%)`,
@@ -189,9 +184,7 @@ const Hero = () => {
       <div 
         className={`absolute inset-0 -z-20 pointer-events-none transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
         style={{
-          background: isDark
-            ? `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, rgba(45, 212, 191, 0.25), rgba(52, 211, 153, 0.12) 40%, transparent 80%)`
-            : `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, rgba(13, 148, 136, 0.22), rgba(16, 185, 129, 0.10) 40%, transparent 80%)`,
+          background: `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, rgba(20, 184, 166, 0.24), rgba(16, 185, 129, 0.10) 40%, transparent 80%)`,
         }}
       />
 

@@ -1,7 +1,9 @@
 @theme {
   /* Fonts */
-  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Manrope', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans:
+    "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading:
+    "Manrope", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Colors */
@@ -14,19 +16,19 @@
   --color-success: var(--color-success);
   --color-warning: var(--color-warning);
   --color-error: var(--color-error);
-  
+
   --color-bg-base: var(--color-bg-base);
   --color-bg-surface: var(--color-bg-surface);
   --color-bg-surface-hover: var(--color-bg-surface-hover);
   --color-text-main: var(--color-text-main);
   --color-text-muted: var(--color-text-muted);
   --color-border-main: var(--color-border-main);
-  
+
   /* Glassmorphism & custom variables */
   --color-glass-bg: var(--color-glass-bg);
   --color-glass-border: var(--color-glass-border);
   --color-glass-glow: var(--color-glass-glow);
-  
+
   /* Custom shadows */
   --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
   --shadow-premium-dark: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
@@ -89,7 +91,9 @@ html {
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   overflow-x: hidden;
 }
 

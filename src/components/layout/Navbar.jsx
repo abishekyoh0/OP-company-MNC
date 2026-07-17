@@ -7,10 +7,43 @@ import Button from '../ui/Button';
 import { gsap } from '../../animations/gsap';
 
 const Navbar = () => {
-  const { isDark, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const navRef = useRef(null);
+  const { isDark, toggleTheme } = useTheme();
+
+  // Scroll spy active section monitor
+  useEffect(() => {
+    const sections = ['home', 'features', 'about', 'services', 'portfolio', 'pricing', 'faq'];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   // Monitor viewport scroll to toggle background blurring
   useEffect(() => {
@@ -40,11 +73,10 @@ const Navbar = () => {
   return (
     <header
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
-        scrolled 
-          ? 'bg-bg-base/80 backdrop-blur-lg border-b border-border-main/40 py-3 shadow-md' 
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${scrolled
+          ? 'bg-bg-base/80 backdrop-blur-lg border-b border-border-main/40 py-3 shadow-md'
           : 'bg-transparent py-5'
-      }`}
+        }`}
     >
       <div className=" mx-auto px-6 flex items-center justify-between">
         {/* Brand Logo */}
@@ -63,7 +95,11 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="nav-item text-sm font-semibold text-text-main/80 hover:text-secondary font-heading transition-colors duration-300"
+              className={`nav-item text-sm font-semibold hover:text-secondary font-heading transition-colors duration-300 relative py-1 ${
+                link.href === `#${activeSection}`
+                  ? 'text-secondary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-secondary after:rounded-full'
+                  : 'text-text-main/80'
+              }`}
             >
               {link.name}
             </a>
@@ -79,10 +115,10 @@ const Navbar = () => {
           >
             {isDark ? <FiSun className="w-4 h-4 animate-float" /> : <FiMoon className="w-4 h-4" />}
           </button>
-          
-          <Button 
-            variant="gradient" 
-            size="sm" 
+
+          <Button
+            variant="gradient"
+            size="sm"
             className="nav-item"
             onClick={() => navigateTo('auth')}
           >
@@ -94,12 +130,12 @@ const Navbar = () => {
         <div className="flex md:hidden items-center gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg border border-border-main text-text-main hover:bg-bg-surface-hover transition-colors duration-300 cursor-pointer"
+            className="p-2.5 rounded-lg border border-border-main text-text-main hover:bg-bg-surface-hover transition-colors duration-300 cursor-pointer animate-float"
             aria-label="Toggle theme"
           >
-            {isDark ? <FiSun className="w-4.5 h-4.5" /> : <FiMoon className="w-4.5 h-4.5" />}
+            {isDark ? <FiSun className="w-4 h-4" /> : <FiMoon className="w-4 h-4" />}
           </button>
-          
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg border border-border-main text-text-main hover:bg-bg-surface-hover transition-colors duration-300 cursor-pointer"
@@ -112,11 +148,10 @@ const Navbar = () => {
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`fixed inset-0 top-[65px] z-40 w-full h-[calc(100vh-65px)] bg-bg-base transition-all duration-500 md:hidden border-t border-border-main/50 flex flex-col p-6 gap-6 ${
-          mobileMenuOpen 
-            ? 'translate-x-0 opacity-100' 
+        className={`fixed inset-0 top-[65px] z-40 w-full h-[calc(100vh-65px)] bg-bg-base transition-all duration-500 md:hidden border-t border-border-main/50 flex flex-col p-6 gap-6 ${mobileMenuOpen
+            ? 'translate-x-0 opacity-100'
             : 'translate-x-full opacity-0 pointer-events-none'
-        }`}
+          }`}
       >
         <nav className="flex flex-col gap-4">
           {navigationLinks.map((link) => (
@@ -124,17 +159,19 @@ const Navbar = () => {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-bold font-heading text-text-main py-2 border-b border-border-main/30 hover:text-secondary transition-colors"
+              className={`text-lg font-bold font-heading py-2 border-b border-border-main/30 hover:text-secondary transition-colors ${
+                link.href === `#${activeSection}` ? 'text-secondary border-b-secondary' : 'text-text-main'
+              }`}
             >
               {link.name}
             </a>
           ))}
         </nav>
         <div className="flex flex-col gap-4 mt-auto">
-          <Button 
-            variant="gradient" 
-            size="lg" 
-            className="w-full" 
+          <Button
+            variant="gradient"
+            size="lg"
+            className="w-full"
             onClick={() => { setMobileMenuOpen(false); navigateTo('auth'); }}
           >
             Get Platform Access
